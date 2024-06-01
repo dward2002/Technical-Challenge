@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Interface;
+namespace App\Service;
 
 /**
  * Pangrams, anagrams and palindromes

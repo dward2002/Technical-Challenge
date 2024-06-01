@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Interface\CheckerInterface;
+use App\Service\CheckerInterface;
 
 class CheckerService implements CheckerInterface
 {
