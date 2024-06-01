@@ -8,14 +8,14 @@ class CheckerService implements CheckerInterface
 {
     public function isPalindrome($word): bool
     {
-        $cleanedWord = strtolower(preg_replace('/[^a-z0-9]/', '', $word));
+        $cleanedWord = $this->cleanString($word);
         return $cleanedWord === strrev($cleanedWord);
     }
 
     public function isAnagram(string $word, string $comparison) : bool
     {
-        $cleanedWord = strtolower(preg_replace('/[^a-z0-9]/', '', $word));
-        $cleanedComparison = strtolower(preg_replace('/[^a-z0-9]/', '', $comparison));
+        $cleanedWord = $this->cleanString($word);
+        $cleanedComparison = $this->cleanString($comparison);
         $wordArray = str_split($cleanedWord);
         $comparisonArray = str_split($cleanedComparison);
         sort($wordArray);
@@ -26,7 +26,7 @@ class CheckerService implements CheckerInterface
 
     public function isPangram(string $phrase) : bool
     {
-        $cleanedPhrase = strtolower(preg_replace('/[^a-z0-9]/', '', $phrase));
+        $cleanedPhrase = $this->cleanString($phrase);
         $alphabet = range('a', 'z');
         
         foreach($alphabet as $letter) {
@@ -36,5 +36,9 @@ class CheckerService implements CheckerInterface
         }
 
         return true;
+    }
+
+    public function cleanString(string $inputString) {
+        return strtolower(preg_replace('/[^a-z0-9]/', '', $inputString));
     }
 }
