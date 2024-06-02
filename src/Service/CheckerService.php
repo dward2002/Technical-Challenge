@@ -9,6 +9,7 @@ class CheckerService implements CheckerInterface
     public function isPalindrome($word): bool
     {
         $cleanedWord = $this->cleanString($word);
+
         return $cleanedWord === strrev($cleanedWord);
     }
 
@@ -40,6 +41,7 @@ class CheckerService implements CheckerInterface
 
     public function cleanString(string $inputString) {
         $lowercaseString = strtolower($inputString);
+        
         return preg_replace('/[^a-z0-9]/', '', $lowercaseString);
     }
 }
