@@ -1,8 +1,54 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div>
-    {{ title }}
+<div class="content">
+    <div class="card">
+        <h5 class="card-header">Anagram</h5>
+        <div class="card-body">
+            <div class="row card-row">
+                <div class="col">
+                    <label>Word</label>
+                    <input type="text" class="form-control" id="anagram-word" placeholder="Word">
+                </div>
+                <div class="col">
+                    <label>Comparison</label>
+                    <input type="text" class="form-control" id="anagram-comparison" placeholder="Comparison">
+                </div>
+                <div class="col column-formatting">
+                    <label>Result</label>
+                    <div id="result-icon" class="output-box"></div>
+            </div>
+            </div class="row">
+                <button class="btn btn-primary" onclick="checkAnagram()">Check</button>
+            </div>
+    </div>
 </div>
+
+<script>
+    function checkAnagram() {
+        const word = document.getElementById('anagram-word').value;
+        const comparison = document.getElementById('anagram-comparison').value;
+
+        fetch('{{ path('app_anagram_check') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ word: word, comparison: comparison }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            let resultIcon = document.getElementById('result-icon');
+            if (data.result) {
+                resultIcon.innerHTML = '<i class="fas fa-check fa-lg" style="color: green"></i>';
+            } else {
+                resultIcon.innerHTML = '<i class="fas fa-x fa-lg"  style="color: red"></i>';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
 
 {% endblock %}

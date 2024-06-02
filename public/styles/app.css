@@ -1,0 +1,17 @@
+.content {
+    margin: 50px
+}
+
+.column-formatting {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.output-box {
+    margin-top: auto;
+}
+
+.card-row {
+    margin-bottom: 15px;
+}
