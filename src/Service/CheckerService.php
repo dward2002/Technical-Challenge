@@ -39,6 +39,7 @@ class CheckerService implements CheckerInterface
     }
 
     public function cleanString(string $inputString) {
-        return strtolower(preg_replace('/[^a-z0-9]/', '', $inputString));
+        $lowercaseString = strtolower($inputString);
+        return preg_replace('/[^a-z0-9]/', '', $lowercaseString);
     }
 }
