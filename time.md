@@ -21,8 +21,14 @@ The next step was to add the functionality to my 'CheckerService' methods and ma
 
 I noticed some areas in which the main functionality could be improved, for example moving repeated code into a 'cleanString' method. This took 10 minutes.
 
+
 # Extra Tasks
 
 I then completed some extra tasks as explained in detail in the 'instructions.md' file. To create the functionality and styling for this it took me 60 minutes. 
 
 To add the additional tests for my controller in took me an additional 30 minutes.
+
+
+# API endpoints
+
+At the end I thought you would probably like an endpoint for each method, so I added this as well as testing each endpoint which took 30 minutes.
