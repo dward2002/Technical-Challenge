@@ -40,6 +40,23 @@ To check the coverage use:
 
 
 
+# API Endpoints
+To run the local server use:
+
+```symfony server:start```
+
+This will start a local web server which can be accessed in your browser at 'localhost:8000'
+
+Example endpoints you can try for each checker task.
+
+```http://localhost:8000/anagram/dusty/study```
+
+```http://localhost:8000/palindrome/anna```
+
+```http://localhost:8000/pangram/The%20quick%20brown%20fox%20jumps%20over%20the%20lazy%20dog```
+
+
+
 # Extra Features
 As well as the core features of this technical challenge, I have added an example usage of the 'isAnagram' method of the 'CheckerService'.
 This is done through the use of an example webpage, which allows you to make a 'POST' request asynchronously to check if two inputted words are an anagram of eachother.
