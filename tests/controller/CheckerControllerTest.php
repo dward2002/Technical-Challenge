@@ -21,15 +21,11 @@ class CheckerControllerTest extends WebTestCase
         $comparison = 'silent';
 
         $client->request(
-            'POST',
-            '/check_anagram',
-            [],
-            [],
-            ['CONTENT_TYPE' => 'application/json'],
-            json_encode(['word' => $word, 'comparison' => $comparison])
+            'GET',
+            sprintf('/anagram/%s/%s', $word, $comparison),
         );
 
         $this->assertResponseIsSuccessful();
-        $this->assertJsonStringEqualsJsonString('{"result":true}', $client->getResponse()->getContent());
+        $this->assertJsonStringEqualsJsonString('{"word":"' . $word . '","comparison":"' . $comparison . '","isAnagram":true}', $client->getResponse()->getContent());
     }
 }

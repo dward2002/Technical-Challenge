@@ -20,15 +20,10 @@ class CheckerController extends AbstractController
         return $this->render('homepage/homepage.html.twig');
     }
 
-    #[Route('/check_anagram', name: 'app_anagram_check', methods: ['POST'])]
-    public function checkAnagram(Request $request): JsonResponse
+    #[Route('/anagram/{word}/{comparison}', name: 'app_anagram_check')]
+    public function isAnagram(string $word, string $comparison): JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
-        $word = $data['word'];
-        $comparison = $data['comparison'];
-
         $result = $this->checkerService->isAnagram($word, $comparison);
-
-        return new JsonResponse(['result' => $result]);
+        return new JsonResponse(['word' => $word, 'comparison' => $comparison, 'isAnagram' => $result]);
     }
 }

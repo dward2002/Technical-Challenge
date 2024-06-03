@@ -26,20 +26,18 @@
 
 <script>
     function checkAnagram() {
-        const word = document.getElementById('anagram-word').value;
-        const comparison = document.getElementById('anagram-comparison').value;
+        const word = encodeURIComponent(document.getElementById('anagram-word').value);
+        const comparison = encodeURIComponent(document.getElementById('anagram-comparison').value);
 
-        fetch('{{ path('app_anagram_check') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ word: word, comparison: comparison }),
+        const urlTemplate = `{{ path('app_anagram_check', { word: 'PLACEHOLDER_WORD', comparison: 'PLACEHOLDER_COMPARISON' }) }}`;
+        const url = urlTemplate.replace('PLACEHOLDER_WORD', word).replace('PLACEHOLDER_COMPARISON', comparison);
+
+        fetch(url, {
         })
         .then(response => response.json())
         .then(data => {
             let resultIcon = document.getElementById('result-icon');
-            if (data.result) {
+            if (data.isAnagram) {
                 resultIcon.innerHTML = '<i class="fas fa-check fa-lg" style="color: green"></i>';
             } else {
                 resultIcon.innerHTML = '<i class="fas fa-x fa-lg"  style="color: red"></i>';
