@@ -6,13 +6,25 @@ use App\Service\CheckerInterface;
 
 class CheckerService implements CheckerInterface
 {
-    public function isPalindrome($word): bool
+    /**
+     * Checks if a given word is a palindrome.
+     *
+     * @param string $word
+     * @return boolean
+     */
+    public function isPalindrome(string $word): bool
     {
         $cleanedWord = $this->cleanString($word);
-
         return $cleanedWord === strrev($cleanedWord);
     }
 
+    /**
+     * Compares two strings to check if they are an anagram
+     *
+     * @param string $word
+     * @param string $comparison
+     * @return boolean
+     */
     public function isAnagram(string $word, string $comparison) : bool
     {
         $cleanedWord = $this->cleanString($word);
@@ -25,6 +37,12 @@ class CheckerService implements CheckerInterface
         return $wordArray === $comparisonArray;
     }
 
+    /**
+     * Checks if a given phrase is a pangram.
+     *
+     * @param string $phrase
+     * @return boolean
+     */
     public function isPangram(string $phrase) : bool
     {
         $cleanedPhrase = $this->cleanString($phrase);
@@ -39,6 +57,12 @@ class CheckerService implements CheckerInterface
         return true;
     }
 
+    /**
+     * Makes a given string lowercase and removes all unwanted characters
+     *
+     * @param string $inputString
+     * @return string
+     */
     public function cleanString(string $inputString) {
         $lowercaseString = strtolower($inputString);
         
