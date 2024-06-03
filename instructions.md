@@ -59,7 +59,7 @@ Example endpoints you can try for each checker task.
 
 # Extra Features
 As well as the core features of this technical challenge, I have added an example usage of the 'isAnagram' method of the 'CheckerService'.
-This is done through the use of an example webpage, which allows you to make a 'POST' request asynchronously to check if two inputted words are an anagram of eachother.
+This is done through the use of an example webpage, which allows you to make a request asynchronously to check if two inputted words are an anagram of eachother.
 
 The main functionalites of this additional task can be found in the following directories:
 
