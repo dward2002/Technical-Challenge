@@ -13,7 +13,22 @@ class CheckerControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h5', 'Anagram');
     }
 
-    public function testCheckAnagram()
+    public function testIsPalindrome()
+    {
+        $client = static::createClient();
+
+        $word = 'anna';
+
+        $client->request(
+            'GET',
+            sprintf('/palindrome/%s', $word),
+        );
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonStringEqualsJsonString('{"word":"' . $word . '","isPalindrome":true}', $client->getResponse()->getContent());
+    }
+
+    public function testIsAnagram()
     {
         $client = static::createClient();
 
@@ -27,5 +42,20 @@ class CheckerControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertJsonStringEqualsJsonString('{"word":"' . $word . '","comparison":"' . $comparison . '","isAnagram":true}', $client->getResponse()->getContent());
+    }
+
+    public function testIsPangram()
+    {
+        $client = static::createClient();
+
+        $word = 'The quick brown fox jumps over the lazy dog';
+
+        $client->request(
+            'GET',
+            sprintf('/pangram/%s', $word),
+        );
+
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonStringEqualsJsonString('{"phrase":"' . $word . '","isPangram":true}', $client->getResponse()->getContent());
     }
 }
